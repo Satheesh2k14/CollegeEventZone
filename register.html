@@ -1,48 +1,48 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
-<script src="angular.min.js"></script>
-<script src="jquery-3.1.1.min.js"></script>
-	<title>
-	Register page for College Event Zone!
-	</title>
+    <script src="angular.min.js"></script>
+    <script src="jquery-3.1.1.min.js"></script>
+    <title>
+        Register page for College Event Zone!
+    </title>
 </head>
 <body>
 <br><br><br><br>
 <center>
-<h1>Register Now</h1>
-	<input type="text" placeholder="Name" id="name">
-	<br>
-	<input type="text" placeholder="Password" id="password">
-	<br>
-	<input type="text" placeholder="User Type" id="type">
-	<br>
-	<input type="text" placeholder="ID number" id="idd">
-	<br>
-	<input type="submit" value ="Submit" id="submit" >
-	<br>
-</center>	
+    <h1>Register Now</h1>
+    <input type="text" placeholder="Name" id="name">
+    <br>
+    <input type="text" placeholder="Password" id="password">
+    <br>
+    <input type="text" placeholder="User Type" id="type">
+    <br>
+    <input type="text" placeholder="ID number" id="idd">
+    <br>
+    <input type="submit" value="Submit" id="submit">
+    <br>
+</center>
 <script>
-	document.getElementById('submit').addEventListener("click", registerUser);
-	function registerUser() {
-		var name = document.getElementById('name').value;
-		var password = document.getElementById('password').value;
-		var type = document.getElementById('type').value;
-		var id = document.getElementById('idd').value;
-		var userData ={
-  			"_id": id,
-  			"name": name,
-  			"type": type,
-  			"password": password
-  		}
-		$.post("/signup", userData, function(data) {
-		  console.log(data);
-		}).fail(function(error) {
-		  if (error.responseText == 'showAlert') {
-		    alert("User already exists");
-		  }
-		});
-	}
+    document.getElementById('submit').addEventListener("click", registerUser);
+    function registerUser() {
+        var name = document.getElementById('name').value;
+        var password = document.getElementById('password').value;
+        var type = document.getElementById('type').value;
+        var id = document.getElementById('idd').value;
+        var userData = {
+            "_id": id,
+            "name": name,
+            "type": type,
+            "password": password
+        }
+        $.post("/signup", userData, function (data) {
+            console.log(data);
+        }).fail(function (error) {
+            if (error.responseText == 'showAlert') {
+                alert("User already exists");
+            }
+        });
+    }
 </script>
 </body>
 </html>

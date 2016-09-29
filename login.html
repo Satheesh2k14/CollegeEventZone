@@ -1,43 +1,43 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
-<script src="angular.min.js"></script>
-<script src="jquery-3.1.1.min.js"></script>
-	<title>
-	Login page for College Event Zone!
-	</title>
+    <script src="angular.min.js"></script>
+    <script src="jquery-3.1.1.min.js"></script>
+    <title>
+        Login page for College Event Zone!
+    </title>
 </head>
 <body>
-	<br><br><br><br>
-	<center>
-	<h1>Register Now</h1>
-		<input type="text" placeholder="ID" id="idd">
-		<br>
-		<input type="text" placeholder="Password" id="password">
-		<br>
-		<input type="submit" value ="Submit" id="submit" >
-		<br>
-	</center>	
+<br><br><br><br>
+<center>
+    <h1>Register Now</h1>
+    <input type="text" placeholder="ID" id="idd">
+    <br>
+    <input type="text" placeholder="Password" id="password">
+    <br>
+    <input type="submit" value="Submit" id="submit">
+    <br>
+</center>
 <script>
-	document.getElementById('submit').addEventListener("click", loginUser);
-	function loginUser() {
-		var password = document.getElementById('password').value;
-		var id = document.getElementById('idd').value;
-		var userData ={
-  			"_id": id,
-  			"password": password
-  		}
-  		alert(id + ' ' + password);
-		$.post("/login", userData, function(data) {
-		  console.log(data);
-		  window.location.href = "/" + data + ".html";
-		}).fail(function(error) {
-		  if (error.responseText == 'showAlert') {
-		    alert("User does not exist");
-		    window.location.href = "/register.html";
-		  }
-		});
-	}
+    document.getElementById('submit').addEventListener("click", loginUser);
+    function loginUser() {
+        var password = document.getElementById('password').value;
+        var id = document.getElementById('idd').value;
+        var userData = {
+            "_id": id,
+            "password": password
+        }
+        alert(id + ' ' + password);
+        $.post("/login", userData, function (data) {
+            console.log(data);
+            window.location.href = "/" + data + ".html";
+        }).fail(function (error) {
+            if (error.responseText == 'showAlert') {
+                alert("User does not exist");
+                window.location.href = "/register.html";
+            }
+        });
+    }
 </script>
 </body>
 </html>
