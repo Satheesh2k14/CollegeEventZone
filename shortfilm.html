@@ -1,0 +1,60 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<title>SHORTFILM re re</title>
+<script src="jquery-3.1.1.min.js"></script>
+</head>
+<body>
+<center>
+<br><br>
+<p id="thebox"></p>
+<input type="submit" value="Display Shortfilm links" id="Display">
+<br><br><br>
+<div id="rating" style="visibility: hidden">
+<h1>Enter rating</h1>
+	<br>
+	<input type="number" placeholder="Rating 1-5" id="rat" >
+	<br>
+	<input type ="submit" value="Submit" id="submitR">
+	<br>
+</div>
+</center>
+<script>
+	document.getElementById('Display').addEventListener("click", display);
+	function display()
+	{
+		$.post("/filmmaker", '', function(data) {
+		  displayData(data);
+		}).fail(function(error) {
+		  if (error.responseText == 'showAlert') {
+		    alert("display failed");
+		  }
+		});
+	}
+	function displayData(data){
+		var str = " ";
+		data.forEach(function(d){
+
+		str += d._id;	
+		str += "&nbsp;&nbsp;&nbsp;&nbsp;";
+		str += d.sfname;
+		str += "&nbsp;&nbsp;&nbsp;&nbsp;";
+		str += d.sflink;
+		str += "<br>";
+		})
+		document.getElementById('thebox').innerHTML = str;
+		$("#rating").css("visibility", "visible");
+	}
+	document.getElementById('submitR').addEventListener("click",rating);
+	function rating()
+	{
+		var num = document.getElementById('rat').value;
+		alert(num);
+		$.post("/updaterating",{n:num},function(data){
+		}).fail(function(error){
+			alert("rating failed");
+		});	
+	}
+</script>
+</body>
+</html>

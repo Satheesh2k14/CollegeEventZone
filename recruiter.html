@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>Recruiter da</title>
+<script src="jquery-3.1.1.min.js"></script>
+</head>
+<body>
+<center>
+<h1>UPDATE SELECTED SHORT FILMS AND PROJECT</h1>
+<input type="submit" value="Update SHORT FILM" id="rating">
+<p id="thebox"></p> 
+<input type="submit" value="Update PROJECT" id="rating2">
+<p id="thebox2"></p> 
+</center>
+<script>
+	document.getElementById('rating').addEventListener("click",update);
+	function update(){
+		$.post("/recruiter",' ',function(data){
+			displayData(data);
+		}).fail(function(error){
+			alert('pochu');
+		});
+	}
+
+	function displayData(d){
+		var str = " ";
+		str += d._id;	
+		str += "&nbsp;&nbsp;&nbsp;&nbsp;";
+		str += d.sfname;
+		str += "&nbsp;&nbsp;&nbsp;&nbsp;";
+		str += d.sflink;
+		str += "&nbsp;&nbsp;&nbsp;&nbsp;";
+		str += d.rating;
+		document.getElementById('thebox').innerHTML = str;
+	}
+
+document.getElementById('rating2').addEventListener("click",update2);
+	function update2(){
+		$.post("/recruiter2",' ',function(data){
+			displayData2(data);
+		}).fail(function(error){
+			alert('pochu');
+		});
+	}
+
+	function displayData2(d){
+		var str = " ";
+		str += d._id;	
+		str += "&nbsp;&nbsp;&nbsp;&nbsp;";
+		str += d.pname;
+		str += "&nbsp;&nbsp;&nbsp;&nbsp;";
+		str += d.plink;
+		str += "&nbsp;&nbsp;&nbsp;&nbsp;";
+		str += d.rating;
+		document.getElementById('thebox2').innerHTML = str;
+	}
+</script>
+</body>
+</html>
