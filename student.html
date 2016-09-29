@@ -1,0 +1,123 @@
+<html>
+<head>
+	<title>
+		Student  ...yaaayyy
+	</title>
+<script src="jquery-3.1.1.min.js"></script>
+</head>
+<body>
+	<center>
+	<br><br><br><br>
+	<h1>Seminar</h1>
+	<input type="text" placeholder="seminar-name" id="sname">
+	<br>
+	<input type="text" placeholder="venue" id="svenue">
+	<br>
+	<input type="text" placeholder="date" id="sdate">
+	<br>
+	<input type="text" placeholder="id 100 + number" id ="sid">
+	<br>
+	<input type="submit" value="submit" id="submit_sem">
+	<br>
+	</center>
+<script>
+	document.getElementById('submit_sem').addEventListener("click", seminarDetails);
+	function seminarDetails() {
+		var seminarName = document.getElementById('sname').value;
+		var semVenue = document.getElementById('svenue').value;
+		var semDate = document.getElementById('sdate').value;
+		var type = "seminar";
+		var id = document.getElementById('sid').value;
+
+		var semData ={
+			"_id" : id,
+			"type" : type,
+			"seminarName" : seminarName,
+			"semVenue" : semVenue,
+			"semDate" :semDate
+   		}
+   		alert(id + ' ' + type + ' ' + seminarName);
+   		//POST DETAILS ABOUT SEMINAR link not given
+		$.post("/seminarpost", semData, function(data) {
+		  console.log(data);
+		}).fail(function(error) {
+		  if (error.responseText == 'showAlert') {
+		    alert("incorrect details");
+		  }
+		});
+	}
+</script>
+	<center>
+	<br><br><br><br>
+	<h1>Short Film</h1>
+	<input type="text" placeholder="shortfilm-name" id="sfname">
+	<br>
+	<input type="text" placeholder="link" id="sflink">
+	<br>
+	<input type="text" placeholder="id 200 + number" id ="sfid">
+	<br>
+	<input type="submit" value="submit" id="submit_sf">
+	<br>
+	</center>
+<script>
+	document.getElementById('submit_sem').addEventListener("click", sfDetails);
+	function sfDetails() {
+		var sfName = document.getElementById('sfname').value;
+		var sflink = document.getElementById('sflink').value;
+		var sftype = "shortfilm";
+		var sfid = document.getElementById('sfid').value;
+
+		var sfData ={
+			"_id" : sfid,
+			"type" : sftype,
+			"sfname" : sfName,
+			"sflink" : sflink
+   		}
+   		//POST DETAILS ABOUT SHORT FILM link not given
+		$.post("/sfpost", sfData, function(data) {
+		  console.log(data);
+		}).fail(function(error) {
+		  if (error.responseText == 'showAlert') {
+		    alert("incorrect details");
+		  }
+		});
+	}
+</script>
+	<center>
+	<br><br><br><br>
+	<h1>Project</h1>
+	<input type="text" placeholder="project-name" id="pname">
+	<br>
+	<input type="text" placeholder="link" id="plink">
+	<br>
+	<input type="text" placeholder="id 300 + number" id ="pid">
+	<br>
+	<input type="submit" value="submit" id="submit_p">
+	<br>
+	</center>
+<script>
+	document.getElementById('submit_p').addEventListener("click", projectDetails);
+	function projectDetails() {
+		var pName = document.getElementById('pname').value;
+		var plink = document.getElementById('plink').value;
+		var ptype = "project";
+		var pid = document.getElementById('pid').value;
+
+		var pData ={
+			"_id" : pid,
+			"type" : ptype,
+			"pname" : pName,
+			"plink" : plink
+   		}
+   		//POST DETAILS ABOUT PROJECT link not given
+		$.post("/projectpost", pData, function(data) {
+		  console.log(data);
+		}).fail(function(error) {
+		  if (error.responseText == 'showAlert') {
+		    alert("incorrect details");
+		  }
+		});
+	}
+</script>	
+</body>
+</html>
